@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL } from "../config";
 import BlogForm from "../components/BlogForm";
 
 export default function Blog({ currentUser }) {
@@ -13,7 +14,9 @@ export default function Blog({ currentUser }) {
 
   const fetchBlogs = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/blogs");
+     // const res = await axios.get("http://localhost:5000/api/blogs");
+     // fetch blogs
+      const res = await axios.get(`${API_URL}/blogs`);
       setBlogs(res.data.blogs || []);
     } catch (err) {
       console.error("Error fetching blogs", err);
@@ -88,7 +91,9 @@ export default function Blog({ currentUser }) {
         return;
       }
       try {
-        await axios.post(`http://localhost:5000/api/blogs/${blog._id}/like`);
+       // await axios.post(`http://localhost:5000/api/blogs/${blog._id}/like`);
+        // like blog
+        await axios.post(`${API_URL}/blogs/${blog._id}/like`);
         setBlogs((prev) =>
           prev.map((b) =>
             b._id === blog._id ? { ...b, likes: (b.likes || 0) + 1 } : b
@@ -133,7 +138,9 @@ export default function Blog({ currentUser }) {
         return;
       }
       try {
-        await axios.post(`http://localhost:5000/api/blogs/${blog._id}/dislike`);
+       // await axios.post(`http://localhost:5000/api/blogs/${blog._id}/dislike`);
+       // dislike blog
+        await axios.post(`${API_URL}/blogs/${blog._id}/dislike`);
         setBlogs((prev) =>
           prev.map((b) =>
             b._id === blog._id ? { ...b, dislikes: (b.dislikes || 0) + 1 } : b

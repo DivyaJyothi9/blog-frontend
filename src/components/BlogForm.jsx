@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { API_URL } from "../config";
 
 const BlogForm = ({ authorName = "", authorRole = "junior", authorYear = "", linkedin = "", onSubmit }) => {
   const [title, setTitle] = useState("");
@@ -52,7 +53,8 @@ const BlogForm = ({ authorName = "", authorRole = "junior", authorYear = "", lin
       // Debug log: show the exact payload being sent
       console.log("Posting blog payload:", payload);
 
-      const res = await axios.post("http://localhost:5000/api/blogs", payload);
+      //const res = await axios.post("http://localhost:5000/api/blogs", payload);
+      const res = await axios.post(`${API_URL}/blogs`, payload);
 
       setMessage(res.data.message || "Blog posted successfully!");
       setTitle("");

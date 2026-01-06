@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { API_URL } from "../config";
 import { Link } from "react-router-dom"; // for "Read More" navigation
 
 const BlogList = ({ currentUserRole, currentUserName }) => {
@@ -13,7 +14,8 @@ const BlogList = ({ currentUserRole, currentUserName }) => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/blogs");
+        //const res = await axios.get("http://localhost:5000/api/blogs");
+        const res = await axios.get(`${API_URL}/blogs`);
         setBlogs(res.data.blogs || []);
       } catch (err) {
         console.error("Error fetching blogs", err);

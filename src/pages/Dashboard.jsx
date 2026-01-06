@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL } from "../config";
 import { Bar, Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -36,13 +37,13 @@ export default function Dashboard() {
       try {
         const [countRes, sentimentRes, engagementRes, topLikedRes, timelineRes] =
           await Promise.all([
-            axios.get("http://localhost:5000/api/analytics/company-count"),
-            axios.get("http://localhost:5000/api/analytics/company-sentiment"),
-            axios.get("http://localhost:5000/api/analytics/engagement"),
-            axios.get("http://localhost:5000/api/analytics/top-liked"),
-            axios.get("http://localhost:5000/api/analytics/timeline"),
+             axios.get(`${API_URL}/analytics/company-count`),
+             axios.get(`${API_URL}/analytics/company-sentiment`),
+             axios.get(`${API_URL}/analytics/engagement`),
+             axios.get(`${API_URL}/analytics/top-liked`),
+             axios.get(`${API_URL}/analytics/timeline`),
           ]);
-
+          
         setCompanyCount(countRes.data.data);
         setCompanySentiment(sentimentRes.data.data);
         setEngagement(engagementRes.data.data);

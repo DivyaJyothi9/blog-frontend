@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from "../config";
 
 const BlogDetail = ({ currentUserRole, currentUserName }) => {
   const { id } = useParams(); // blog ID from URL
@@ -13,7 +14,9 @@ const BlogDetail = ({ currentUserRole, currentUserName }) => {
     const fetchBlog = async () => {
       try {
         // ✅ Changed to /blogs/:id endpoint
-        const res = await axios.get(`http://localhost:5000/api/blogs/${id}`);
+        //const res = await axios.get(`http://localhost:5000/api/blogs/${id}`);
+        // fetch blog
+        const res = await axios.get(`${API_URL}/blogs/${id}`);
         setBlog(res.data.blog);
       } catch (err) {
         setMessage("Error fetching blog");
@@ -27,7 +30,9 @@ const BlogDetail = ({ currentUserRole, currentUserName }) => {
   const handleDelete = async () => {
     try {
       // ✅ Changed to /blogs/:id delete endpoint
-      const res = await axios.delete(`http://localhost:5000/api/blogs/${id}`, {
+      //const res = await axios.delete(`http://localhost:5000/api/blogs/${id}`, {
+      // delete blog
+      const res = await axios.delete(`${API_URL}/blogs/${id}`, {
         data: {
           editor_name: currentUserName,
           editor_role: currentUserRole,
@@ -103,8 +108,10 @@ const BlogDetail = ({ currentUserRole, currentUserName }) => {
           return;
         }
 
-        const res = await axios.post(
-          `http://localhost:5000/api/blogs/${blog._id}/like`,
+       // const res = await axios.post(
+         // `http://localhost:5000/api/blogs/${blog._id}/like`,
+         const res = await axios.post(
+         `${API_URL}/blogs/${blog._id}/like`,
           { user_id: userId },
           { headers: { "Content-Type": "application/json" } }
         );
@@ -159,8 +166,10 @@ const BlogDetail = ({ currentUserRole, currentUserName }) => {
           return;
         }
 
-        const res = await axios.post(
-          `http://localhost:5000/api/blogs/${blog._id}/dislike`,
+       // const res = await axios.post(
+         // `http://localhost:5000/api/blogs/${blog._id}/dislike`,
+         const res = await axios.post(
+           `${API_URL}/blogs/${blog._id}/dislike`,
           { user_id: userId },
           { headers: { "Content-Type": "application/json" } }
         );
