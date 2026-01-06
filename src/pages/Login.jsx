@@ -1,3 +1,4 @@
+// src/pages/Login.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { isEmail } from "../utils/validations";
@@ -12,10 +13,18 @@ export default function Login() {
   const [formMsg, setFormMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // ✅ Logout function
+  const handleLogout = () => {
+    localStorage.clear(); // remove all saved user info
+    window.dispatchEvent(new Event("storage")); // reload app state
+    navigate("/login", { replace: true }); // redirect smoothly
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormMsg("");
 
+    // ✅ Basic validations
     if (!loginType) return setFormMsg("Select Year / Staff");
     if (!password) return setFormMsg("Password required");
 
@@ -31,9 +40,7 @@ export default function Login() {
 
     setLoading(true);
     try {
-     // const res = await fetch("http://localhost:5000/api/auth/login", {
-     // new
-        const res = await fetch(`${API_URL}/auth/login`,{
+      const res = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -44,10 +51,9 @@ export default function Login() {
       if (res.ok) {
         const { role, name, year, linkedin } = data;
 
+        // ✅ Save user info in localStorage
         localStorage.setItem("name", name || "");
         localStorage.setItem("role", (role || "").toLowerCase());
-
-        // ✅ If backend returns year/linkedin, save them too
         if (year) localStorage.setItem("year", year.toLowerCase());
         if (linkedin) localStorage.setItem("linkedin", linkedin);
 
@@ -55,10 +61,7 @@ export default function Login() {
         window.dispatchEvent(new Event("storage"));
 
         setFormMsg("Login successful. Redirecting...");
-
-    setTimeout(() => {
-      navigate("/blogs"); // ✅ smooth navigation
-      }, 1000);
+        navigate("/blogs", { replace: true }); // ✅ smooth redirect
       } else {
         setFormMsg(data.message || "Login failed");
       }
@@ -79,6 +82,7 @@ export default function Login() {
             id="loginType"
             value={loginType}
             onChange={(e) => setLoginType(e.target.value)}
+            required
           >
             <option value="">Select Year / Staff</option>
             <option value="1-2">1st / 2nd Year</option>
@@ -94,9 +98,11 @@ export default function Login() {
                 placeholder="Registration Number"
                 value={regNo}
                 onChange={(e) => setRegNo(e.target.value)}
+                required
               />
             </>
           )}
+
           {loginType === "staff" && (
             <>
               <label htmlFor="email">Email</label>
@@ -105,6 +111,7 @@ export default function Login() {
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </>
           )}
@@ -116,6 +123,7 @@ export default function Login() {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
 
           {formMsg && <div className="msg-error">{formMsg}</div>}
@@ -124,6 +132,13 @@ export default function Login() {
             {loading ? "Logging in..." : "LOGIN"}
           </button>
         </form>
+
+        {/* ✅ Logout button */}
+        <div className="mt-4 text-center">
+          <button onClick={handleLogout} className="btn-red">
+            Logout
+          </button>
+        </div>
       </div>
     </div>
   );
