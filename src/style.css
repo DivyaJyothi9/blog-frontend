@@ -1,0 +1,344 @@
+/* Global Styles */
+body, html {
+margin: 0;
+padding: 0;
+font-family: Arial, sans-serif;
+background-image: url('./assets/sathyabama.png'); /* adjust path as needed */
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+min-height: 100vh;
+color: #fff;
+}
+
+/* Flex center utility for forms only */
+.flex-center-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* full viewport height */
+}
+
+/* For normal content like blog lists, allow vertical flow */
+.flex-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* Container for forms and content */
+.container {
+background-color: rgba(128,0,0,0.85); /* maroon with transparency */
+padding: 20px 30px;
+border-radius: 10px;
+box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+max-width: 400px;
+width: 100%;
+margin: 20px auto;
+}
+
+/* Form Elements */
+input[type="text"], input[type="email"], input[type="password"], input[type="number"] {
+width: 100%;
+padding: 10px 12px;
+border-radius: 5px;
+border: none;
+margin-bottom: 10px;
+font-size: 14px;
+}
+
+input:focus {
+outline: 2px solid #FFD700; /* golden highlight */
+}
+
+button {
+width: 100%;
+padding: 10px;
+border-radius: 5px;
+border: none;
+font-weight: bold;
+cursor: pointer;
+font-size: 14px;
+opacity: 0.9;
+}
+
+/* Specific button colors */
+.btn-blue {
+background-color: #1E40AF; /* sathy-blue */
+color: white;
+}
+
+.btn-blue:hover {
+background-color: #1e3a8a;
+}
+
+.btn-gray {
+background-color: #6B7280;
+color: white;
+}
+
+.btn-disabled {
+background-color: #6B7280;
+cursor: not-allowed;
+}
+
+/* Error & Success Messages */
+.msg-error {
+background-color: #FFFBCC;
+color: #B45309; /* yellow/dark yellow */
+padding: 8px;
+border-radius: 5px;
+margin-bottom: 10px;
+font-size: 13px;
+}
+
+.msg-success {
+background-color: #D1FAE5;
+color: #065F46; /* green */
+padding: 8px;
+border-radius: 5px;
+margin-bottom: 10px;
+font-size: 13px;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: maroon;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar h1 {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+.navbar-right {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.nav-item {
+  color: white;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.nav-item.active {
+  color: yellow;
+}
+
+.navbar-user {
+  display: flex;
+  flex-direction: column; /* stack Hi, Name + Logout vertically */
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.user-tag {
+  color: white;
+  font-size: 14px;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 5px;
+}
+
+.logout-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+/* Home Page Content Box */
+.content-box {
+background-color: rgba(128,0,0,0.95);
+padding: 20px 30px;
+border-radius: 10px;
+box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+max-width: 700px;
+margin: 30px auto;
+text-align: center;
+}
+
+.content-box h2 {
+font-size: 36px;
+font-weight: 800;
+margin-bottom: 20px;
+}
+
+.content-box h3 {
+font-size: 24px;
+font-weight: 700;
+margin-bottom: 15px;
+}
+
+.content-box ul {
+list-style: disc inside;
+font-size: 16px;
+text-align: left;
+}
+
+.content-box ul li {
+margin-bottom: 8px;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+.content-box h2 { font-size: 28px; }
+.content-box h3 { font-size: 20px; }
+.navbar h1 { font-size: 16px; }
+}
+
+
+/* Ensure all form elements have consistent width */
+input, select, button {
+  width: 100%;
+  box-sizing: border-box; /* includes padding and border in width */
+}
+
+/* Inputs and dropdowns */
+input, select {
+  padding: 12px 14px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: none;
+  font-size: 15px;
+  display: block;
+  width: 100%;
+}
+
+/* Buttons */
+button {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+}
+
+/* Add consistent spacing between elements */
+form > * {
+  margin-bottom: 15px;
+}
+
+/* Optional: fix container width for uniformity */
+.container {
+  max-width: 400px;
+  width: 100%;
+  min-width: 300px;
+}
+
+/* BlogForm Specific Enhancements */
+.blogform-container {
+  background-color: rgba(128, 0, 0, 0.9);
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  max-width: 700px; /* wider container */
+  width: 100%;
+  margin: 40px auto;
+  color: white;
+  box-sizing: border-box; /* ensures padding doesn't shrink width */
+}
+
+.blogform-container h2 {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 25px;
+  color: #FFD700; /* golden heading */
+}
+
+.blogform-container label {
+  font-weight: bold;
+  font-size: 15px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.blogform-container input,
+.blogform-container textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 6px;
+  border: none;
+  font-size: 15px;
+  margin-bottom: 20px;
+  background-color: #f8f8f8;
+  color: #333;
+  box-sizing: border-box; /* ensures consistent sizing */
+}
+
+
+.blogform-container textarea {
+  height: 220px; /* larger text area */
+  resize: vertical;
+}
+
+.blogform-container .btn-blue {
+  background-color: #1E40AF;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
+
+.blogform-container .btn-blue:hover {
+  background-color: #1e3a8a;
+}
+
+.blogform-container .msg-success,
+.blogform-container .msg-error {
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.blogform-container .msg-success {
+  background-color: #22c55e;
+  color: white;
+}
+
+.blogform-container .msg-error {
+  background-color: #b91c1c;
+  color: white;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.blog-card {
+  transition: transform 0.2s ease;
+}
+.blog-card:hover {
+  transform: translateY(-5px);
+}
